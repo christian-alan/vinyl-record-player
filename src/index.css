@@ -1,0 +1,97 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Familjen Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+}
+
+/* Page tokens follow the system light/dark setting. The deck itself is the same orange object in both. */
+@theme inline {
+  --color-ground: var(--ground);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-panel: var(--panel);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+}
+
+:root {
+  --ground: #e4e1db;
+  --ink: #25211e;
+  --muted: #7a726b;
+  --panel: #ece9e4;
+  --accent: #e8501f;
+  --accent-ink: #b83a10;
+  --shadow: rgba(60, 40, 25, 0.3);
+  --sleeve-edge: rgba(37, 33, 30, 0.18);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ground: #191716;
+    --ink: #eee8e1;
+    --muted: #9b928a;
+    --panel: #221f1d;
+    --accent: #ff6a3a;
+    --accent-ink: #ff8a60;
+    --shadow: rgba(0, 0, 0, 0.65);
+    --sleeve-edge: rgba(0, 0, 0, 0.5);
+    color-scheme: dark;
+  }
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+  background: var(--ground);
+}
+
+/* ───────────── Deck ───────────── */
+
+.deck-focus:focus {
+  outline: none;
+}
+.deck-focus:focus-visible {
+  outline: 3px solid var(--accent-ink);
+  outline-offset: 6px;
+}
+
+/* Engraved labels on the plinth and rail */
+.eng {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  fill: #c2401a;
+  text-anchor: middle;
+}
+.rail-t {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  fill: #8c8c92;
+}
+
+/* ───────────── Records in hand ───────────── */
+
+.float {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 60;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+  filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.35));
+}
+.float.lifted {
+  filter: drop-shadow(0 26px 30px rgba(0, 0, 0, 0.42));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation: none !important;
+  }
+}
